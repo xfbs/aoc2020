@@ -8,4 +8,5 @@ members = [
     "05-binary-boarding",
     "06-custom-customs",
     "08-handheld-halting",
+    "13-shuttle-search",
 ]
