@@ -1,6 +1,6 @@
+use regex::Regex;
 use std::io::{self, BufRead};
 use std::ops::Range;
-use regex::Regex;
 
 #[derive(Clone, Debug, PartialEq, Eq, Hash)]
 struct Policy {
@@ -16,27 +16,29 @@ struct Item {
 
 impl Item {
     fn validate(&self) -> bool {
-        let occurences = self.password.chars().filter(|c| *c == self.policy.letter).count();
+        let occurences = self
+            .password
+            .chars()
+            .filter(|c| *c == self.policy.letter)
+            .count();
         self.policy.range.contains(&occurences)
     }
 
     fn validate_two(&self) -> bool {
-        let first = self.password.chars().nth(self.policy.range.start - 1) == Some(self.policy.letter);
-        let second = self.password.chars().nth(self.policy.range.end - 2) == Some(self.policy.letter);
+        let first =
+            self.password.chars().nth(self.policy.range.start - 1) == Some(self.policy.letter);
+        let second =
+            self.password.chars().nth(self.policy.range.end - 2) == Some(self.policy.letter);
         first ^ second
     }
 }
 
 fn main() {
     let items = stdin_to_list();
-    let valid = items.iter()
-        .filter(|x| x.validate())
-        .count();
+    let valid = items.iter().filter(|x| x.validate()).count();
     println!("{} valid", valid);
 
-    let valid_two = items.iter()
-        .filter(|x| x.validate_two())
-        .count();
+    let valid_two = items.iter().filter(|x| x.validate_two()).count();
     println!("{} valid two", valid_two);
 }
 
