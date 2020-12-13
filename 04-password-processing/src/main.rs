@@ -5,7 +5,7 @@ use std::str::FromStr;
 struct Color {
     red: u8,
     green: u8,
-    blue: u8
+    blue: u8,
 }
 
 impl FromStr for Color {
@@ -61,7 +61,9 @@ impl Passport {
             self.hair_color.is_some(),
             self.eye_color.is_some(),
             self.passport_id.is_some(),
-        ].iter().all(|n| *n)
+        ]
+        .iter()
+        .all(|n| *n)
     }
 }
 
@@ -75,7 +77,11 @@ fn stdin_to_passports() -> Vec<Passport> {
     let stdin = io::stdin();
     let mut passport = Passport::default();
     let mut passports = Vec::new();
-    for line in stdin.lock().lines().chain(std::iter::once(Ok("".to_string()))) {
+    for line in stdin
+        .lock()
+        .lines()
+        .chain(std::iter::once(Ok("".to_string())))
+    {
         let line = line.unwrap();
         if line.len() == 0 {
             passports.push(passport);

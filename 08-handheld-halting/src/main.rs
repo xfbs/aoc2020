@@ -50,10 +50,7 @@ impl FromStr for Instruction {
         let data = &s[4..];
         let data = data.parse::<i32>().unwrap();
 
-        Ok(Instruction {
-            typ,
-            data,
-        })
+        Ok(Instruction { typ, data })
     }
 }
 
@@ -84,14 +81,15 @@ impl Program {
             match self.code.get(self.program_counter) {
                 Some(Instruction { typ: Nop, data: _ }) => {
                     self.program_counter += 1;
-                },
+                }
                 Some(Instruction { typ: Acc, data }) => {
                     self.accumulator += data;
                     self.program_counter += 1;
-                },
+                }
                 Some(Instruction { typ: Jmp, data }) => {
-                    self.program_counter = (self.program_counter as isize + *data as isize) as usize;
-                },
+                    self.program_counter =
+                        (self.program_counter as isize + *data as isize) as usize;
+                }
                 None if self.program_counter == self.code.len() => {
                     return Terminate::Done;
                 }
@@ -99,7 +97,6 @@ impl Program {
                     return Terminate::Error;
                 }
             }
-
         }
     }
 

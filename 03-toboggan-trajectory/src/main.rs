@@ -36,7 +36,10 @@ fn main() {
 
     // part two
     let slopes = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)];
-    let product: usize = slopes.iter().map(|(x, y)| map.count_trees(*x, *y)).product();
+    let product: usize = slopes
+        .iter()
+        .map(|(x, y)| map.count_trees(*x, *y))
+        .product();
     println!("product = {}", product);
 }
 

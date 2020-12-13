@@ -28,10 +28,7 @@ impl FromStr for Seat {
             })
             .fold(0, |r, c| 2 * r + c);
 
-        Ok(Seat {
-            row,
-            column,
-        })
+        Ok(Seat { row, column })
     }
 }
 
@@ -43,13 +40,40 @@ impl Seat {
 
 #[test]
 fn test_seat_from_str() {
-    assert_eq!("FFFFFFFLLL".parse::<Seat>().unwrap(), Seat { row: 0, column: 0 });
-    assert_eq!("FFFFFFBLLR".parse::<Seat>().unwrap(), Seat { row: 1, column: 1 });
-    assert_eq!("BBBBBBBRRR".parse::<Seat>().unwrap(), Seat { row: 127, column: 7 });
-    assert_eq!("FBFBBFFRLR".parse::<Seat>().unwrap(), Seat { row: 44, column: 5 });
-    assert_eq!("BFFFBBFRRR".parse::<Seat>().unwrap(), Seat { row: 70, column: 7 });
-    assert_eq!("FFFBBBFRRR".parse::<Seat>().unwrap(), Seat { row: 14, column: 7 });
-    assert_eq!("BBFFBBFRLL".parse::<Seat>().unwrap(), Seat { row: 102, column: 4 });
+    assert_eq!(
+        "FFFFFFFLLL".parse::<Seat>().unwrap(),
+        Seat { row: 0, column: 0 }
+    );
+    assert_eq!(
+        "FFFFFFBLLR".parse::<Seat>().unwrap(),
+        Seat { row: 1, column: 1 }
+    );
+    assert_eq!(
+        "BBBBBBBRRR".parse::<Seat>().unwrap(),
+        Seat {
+            row: 127,
+            column: 7
+        }
+    );
+    assert_eq!(
+        "FBFBBFFRLR".parse::<Seat>().unwrap(),
+        Seat { row: 44, column: 5 }
+    );
+    assert_eq!(
+        "BFFFBBFRRR".parse::<Seat>().unwrap(),
+        Seat { row: 70, column: 7 }
+    );
+    assert_eq!(
+        "FFFBBBFRRR".parse::<Seat>().unwrap(),
+        Seat { row: 14, column: 7 }
+    );
+    assert_eq!(
+        "BBFFBBFRLL".parse::<Seat>().unwrap(),
+        Seat {
+            row: 102,
+            column: 4
+        }
+    );
 }
 
 fn main() {
