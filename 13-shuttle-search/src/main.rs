@@ -33,9 +33,16 @@ fn main() {
             })
             .collect();
 
+        // offset is the actual timestamp, product is the granularity at which
+        // we can move. in the beginning, we are at timestamp 0, and we can
+        // move by the bus[0] - because any multiple of the first bus id will
+        // have the property that it will be divisible by the bus[0] id.
         let mut offset = 0;
         let mut product = busses[0].unwrap();
 
+        // what we do is we increase our offset by the product to find the
+        // next biggest number such that the current bus will leave i minutes
+        // after.
         for (i, bus) in busses.iter().enumerate().skip(1) {
             if let Some(bus) = bus {
                 let mut i = i;
