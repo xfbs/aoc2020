@@ -45,8 +45,6 @@ fn main() {
         // after.
         for (i, bus) in busses.iter().enumerate().skip(1) {
             if let Some(bus) = bus {
-                let mut i = i;
-
                 while offset % bus != bus - (i % bus) {
                     offset += product;
                 }
