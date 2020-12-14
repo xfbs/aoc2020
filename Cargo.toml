@@ -10,4 +10,5 @@ members = [
     "08-handheld-halting",
     "12-rain-risk",
     "13-shuttle-search",
+    "14-docking-data",
 ]
